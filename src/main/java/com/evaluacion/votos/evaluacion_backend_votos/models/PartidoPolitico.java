@@ -1,4 +1,4 @@
-package com.evaluacion.votos.evaluacion_backend_votos;
+package com.evaluacion.votos.evaluacion_backend_votos.models;
 
 import jakarta.persistence.*;
 
