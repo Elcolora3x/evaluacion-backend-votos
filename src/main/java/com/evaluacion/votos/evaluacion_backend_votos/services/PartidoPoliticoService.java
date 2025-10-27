@@ -32,6 +32,16 @@ public class PartidoPoliticoService {
         return partidosDTO;
     }
 
+    public PartidoPolitico getPartidoById(Long id) throws NoSuchElementException {
+        Optional<PartidoPolitico> partido = repository.findById(id);
+        if(partido.isPresent()){
+            return partido.get();
+        }
+        else{
+            throw new NoSuchElementException();
+        }
+    }
+
     public PartidoPolitico createPartido(PartidoPolitico partidoPolitico){
         return repository.save(partidoPolitico);
     }
