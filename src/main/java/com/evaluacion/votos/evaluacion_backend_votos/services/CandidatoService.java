@@ -8,6 +8,7 @@ import com.evaluacion.votos.evaluacion_backend_votos.repositories.CandidatoRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -32,6 +33,10 @@ public class CandidatoService {
         }
 
         return candidatosDTO;
+    }
+
+    public static List<Candidato> getCandidatosByPartidoPolitico(PartidoPolitico partidoPolitico){
+        return repository.findByPartidoPolitico(partidoPolitico);
     }
 
     public Candidato createCandidato(Candidato candidato){
