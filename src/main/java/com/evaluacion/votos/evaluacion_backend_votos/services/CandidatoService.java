@@ -33,6 +33,16 @@ public class CandidatoService {
         return candidatosDTO;
     }
 
+    public Candidato getCandidatoById(Long id) throws NoSuchElementException {
+        Optional<Candidato> candidato = repository.findById(id);
+        if(candidato.isPresent()){
+            return candidato.get();
+        }
+        else{
+            throw new NoSuchElementException();
+        }
+    }
+
     public List<Candidato> getCandidatosByPartidoPolitico(PartidoPolitico partidoPolitico){
         return repository.findByPartidoPolitico(partidoPolitico);
     }
