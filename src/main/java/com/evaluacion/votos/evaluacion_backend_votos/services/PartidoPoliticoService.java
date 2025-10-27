@@ -45,7 +45,7 @@ public class PartidoPoliticoService {
             partidoExistente.setNombre(partidoActualizado.getNombre());
             partidoExistente.setSigla(partidoActualizado.getSigla());
 
-           return repository.save(partidoExistente);
+            return repository.save(partidoExistente);
         }
         else{
             throw new NoSuchElementException("No se encontro el partido");
