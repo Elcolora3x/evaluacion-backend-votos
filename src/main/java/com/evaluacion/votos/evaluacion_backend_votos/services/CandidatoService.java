@@ -44,7 +44,12 @@ public class CandidatoService {
     public Candidato updateCandidato(Long id, Candidato candidatoActualizado) throws NoSuchElementException {
         Optional<Candidato> candidato = repository.findById(id);
         if(candidato.isPresent()){
-            return repository.save(candidatoActualizado);
+            Candidato candidatoExistente = candidato.get();
+
+            candidatoExistente.setNombre(candidatoActualizado.getNombre());
+            candidatoExistente.setPartidoPolitico(candidatoActualizado.getPartidoPolitico());
+
+            return repository.save(candidatoExistente);
         }
         else{
             throw new NoSuchElementException("No se encontro el candidato");
