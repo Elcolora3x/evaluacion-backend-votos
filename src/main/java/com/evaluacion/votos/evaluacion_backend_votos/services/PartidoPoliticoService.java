@@ -38,8 +38,14 @@ public class PartidoPoliticoService {
 
     public PartidoPolitico updatePartido(Long id, PartidoPolitico partidoActualizado) throws NoSuchElementException {
         Optional<PartidoPolitico> partido = repository.findById(id);
+
         if(partido.isPresent()){
-           return repository.save(partidoActualizado);
+            PartidoPolitico partidoExistente = partido.get();
+
+            partidoExistente.setNombre(partidoActualizado.getNombre());
+            partidoExistente.setSigla(partidoActualizado.getSigla());
+
+            return repository.save(partidoExistente);
         }
         else{
             throw new NoSuchElementException("No se encontro el partido");
