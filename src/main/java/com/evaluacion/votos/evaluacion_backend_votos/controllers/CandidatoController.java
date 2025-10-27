@@ -33,9 +33,9 @@ public class CandidatoController {
         return new ResponseEntity<>(service.updateCandidato(candidatoId, candidato), HttpStatus.OK);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Candidato> deleteCandidato(@RequestBody Candidato candidato){
-        service.deleteCandidato(candidato.getId());
+    @DeleteMapping("/{candidatoId}")
+    public ResponseEntity<Candidato> deleteCandidato(@PathVariable("candidatoId") Long candidatoId){
+        service.deleteCandidato(candidatoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
