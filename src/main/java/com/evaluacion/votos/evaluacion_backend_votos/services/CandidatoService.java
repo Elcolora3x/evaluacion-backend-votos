@@ -35,7 +35,7 @@ public class CandidatoService {
         return candidatosDTO;
     }
 
-    public static List<Candidato> getCandidatosByPartidoPolitico(PartidoPolitico partidoPolitico){
+    public List<Candidato> getCandidatosByPartidoPolitico(PartidoPolitico partidoPolitico){
         return repository.findByPartidoPolitico(partidoPolitico);
     }
 
