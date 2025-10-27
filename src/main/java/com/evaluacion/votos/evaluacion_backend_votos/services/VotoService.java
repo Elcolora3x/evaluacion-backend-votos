@@ -14,13 +14,15 @@ import java.util.List;
 public class VotoService {
     private VotoRepository repository;
     private CandidatoService candidatoService;
+    private PartidoPoliticoService partidoPoliticoService;
 
 
     @Autowired
-    public VotoService(VotoRepository repository, CandidatoService candidatoService) {
+    public VotoService(VotoRepository repository, CandidatoService candidatoService, PartidoPoliticoService partidoPoliticoService) {
 
         this.repository = repository;
         this.candidatoService = candidatoService;
+        this.partidoPoliticoService = partidoPoliticoService;
     }
 
     public Voto createVoto(Voto voto) { return repository.save(voto); }
@@ -32,8 +34,10 @@ public class VotoService {
         return votos.size();
     }
 
-    public Integer getVotosByPartidoPolitico(PartidoPolitico partidoPolitico){
+    public Integer getVotosByPartidoPolitico(Long partidoPoliticoId){
+        PartidoPolitico partidoPolitico = partidoPoliticoService.getPartidoById(partidoPoliticoId);
         Integer cantidadVotos = 0;
+
         List<Candidato> candidatosDelPartido = candidatoService.getCandidatosByPartidoPolitico(partidoPolitico);
         for (Candidato candidato : candidatosDelPartido) {
             cantidadVotos += getVotosByCandidato(candidato.getId());
