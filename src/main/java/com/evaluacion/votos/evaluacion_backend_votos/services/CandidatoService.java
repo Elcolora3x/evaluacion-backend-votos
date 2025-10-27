@@ -1,14 +1,12 @@
 package com.evaluacion.votos.evaluacion_backend_votos.services;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.CandidatoDTO;
-import com.evaluacion.votos.evaluacion_backend_votos.dtos.PartidoPoliticoDTO;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Candidato;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.repositories.CandidatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
