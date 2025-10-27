@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface CandidatoRepository extends JpaRepository<Candidato, Long> {
 
-    List<Candidato> findByPartidoPolitico(PartidoPolitico partidoPolitico);
+   public List<Candidato> findByPartidoPolitico(PartidoPolitico partidoPolitico);
 }
