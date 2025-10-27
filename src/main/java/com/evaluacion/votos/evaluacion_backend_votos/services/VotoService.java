@@ -25,7 +25,9 @@ public class VotoService {
 
     public Voto createVoto(Voto voto) { return repository.save(voto); }
 
-    public Integer getVotosByCandidato(Candidato candidato){
+    public Integer getVotosByCandidato(Long candidatoId){
+        Candidato candidato = candidatoService.getCandidatoById(candidatoId);
+
         List<Voto> votos = repository.findByCandidato(candidato);
         return votos.size();
     }
@@ -34,7 +36,7 @@ public class VotoService {
         Integer cantidadVotos = 0;
         List<Candidato> candidatosDelPartido = candidatoService.getCandidatosByPartidoPolitico(partidoPolitico);
         for (Candidato candidato : candidatosDelPartido) {
-            cantidadVotos += getVotosByCandidato(candidato);
+            cantidadVotos += getVotosByCandidato(candidato.getId());
         }
 
         return cantidadVotos;
