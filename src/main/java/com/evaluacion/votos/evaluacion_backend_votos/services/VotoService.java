@@ -1,5 +1,7 @@
 package com.evaluacion.votos.evaluacion_backend_votos.services;
 
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.CandidatoNoEncontradoException;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Candidato;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Voto;
@@ -7,7 +9,6 @@ import com.evaluacion.votos.evaluacion_backend_votos.repositories.VotoRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,14 +28,18 @@ public class VotoService {
 
     public Voto createVoto(Voto voto) { return repository.save(voto); }
 
-    public Integer getVotosByCandidato(Long candidatoId){
+    public Integer getVotosByCandidato(Long candidatoId)
+            throws CandidatoNoEncontradoException {
+
         Candidato candidato = candidatoService.getCandidatoById(candidatoId);
 
         List<Voto> votos = repository.findByCandidato(candidato);
         return votos.size();
     }
 
-    public Integer getVotosByPartidoPolitico(Long partidoPoliticoId){
+    public Integer getVotosByPartidoPolitico(Long partidoPoliticoId)
+            throws PartidoNoEncontradoException,  CandidatoNoEncontradoException {
+
         PartidoPolitico partidoPolitico = partidoPoliticoService.getPartidoById(partidoPoliticoId);
         Integer cantidadVotos = 0;
 
