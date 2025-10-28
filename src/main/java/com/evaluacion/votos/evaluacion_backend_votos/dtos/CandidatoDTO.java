@@ -5,12 +5,12 @@ import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 public class CandidatoDTO {
     private Long id;
     private String nombre;
-    private PartidoPoliticoDTO partidoPolitico;
+    private PartidoPolitico partidoPolitico;
 
     public CandidatoDTO() {
     }
 
-    public CandidatoDTO(Long id, String nombre, PartidoPoliticoDTO partidoPolitico) {
+    public CandidatoDTO(Long id, String nombre, PartidoPolitico partidoPolitico) {
         this.id = id;
         this.nombre = nombre;
         this.partidoPolitico = partidoPolitico;
@@ -24,7 +24,7 @@ public class CandidatoDTO {
         return nombre;
     }
 
-    public PartidoPoliticoDTO getPartidoPolitico() {
+    public PartidoPolitico getPartidoPolitico() {
         return partidoPolitico;
     }
 }
