@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -19,6 +18,10 @@ public class PartidoPoliticoService {
     @Autowired
     public PartidoPoliticoService(PartidoPoliticoRepository repository) {
         this.repository = repository;
+    }
+
+    public List<PartidoPolitico> init(List<PartidoPolitico> partidosPoliticos){
+        return repository.saveAll(partidosPoliticos);
     }
 
     public List<PartidoPoliticoDTO> getPartidos(){
