@@ -19,6 +19,13 @@ public class CandidatoController {
     @Autowired
     public CandidatoController(CandidatoService service) { this.service = service; }
 
+
+    @PostMapping("/init")
+    public ResponseEntity<List<Candidato>> init(@RequestBody List<Candidato> candidatos) {
+        return new ResponseEntity<>(service.init(candidatos), HttpStatus.CREATED);
+    }
+
+
     @GetMapping
     public ResponseEntity<List<CandidatoDTO>> getCandidatos(){
         return new ResponseEntity<>(service.getCandidatos(), HttpStatus.OK);

@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/partidos")
@@ -21,6 +20,13 @@ public class PartidoPoliticoController {
     PartidoPoliticoController(PartidoPoliticoService service) {
         this.service = service;
     }
+
+
+    @PostMapping("/init")
+    public ResponseEntity<List<PartidoPolitico>> init(@RequestBody List<PartidoPolitico> partidosPoliticos) {
+        return new ResponseEntity<>(service.init(partidosPoliticos), HttpStatus.CREATED);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<PartidoPoliticoDTO>> getPartidos(){
