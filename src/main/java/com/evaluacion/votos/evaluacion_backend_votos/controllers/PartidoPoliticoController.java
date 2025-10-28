@@ -1,6 +1,7 @@
 package com.evaluacion.votos.evaluacion_backend_votos.controllers;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.PartidoPoliticoDTO;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.services.PartidoPoliticoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,16 @@ public class PartidoPoliticoController {
     }
 
     @PutMapping("/{partidoId}")
-    public ResponseEntity<PartidoPolitico> updatePartido(@PathVariable("partidoId") Long partidoId, @RequestBody PartidoPolitico partidoNuevo) throws NoSuchElementException {
+    public ResponseEntity<PartidoPolitico> updatePartido(@PathVariable("partidoId") Long partidoId, @RequestBody PartidoPolitico partidoNuevo)
+            throws PartidoNoEncontradoException {
+
         return new ResponseEntity<>(service.updatePartido(partidoId, partidoNuevo), HttpStatus.OK);
     }
 
     @DeleteMapping("/{partidoId}")
-    public ResponseEntity<Void> deletePartido(@PathVariable("partidoId") Long partidoId){
+    public ResponseEntity<Void> deletePartido(@PathVariable("partidoId") Long partidoId)
+            throws PartidoNoEncontradoException {
+
         service.deletePartido(partidoId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

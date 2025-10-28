@@ -1,5 +1,7 @@
 package com.evaluacion.votos.evaluacion_backend_votos.controllers;
 
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.CandidatoNoEncontradoException;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Voto;
 import com.evaluacion.votos.evaluacion_backend_votos.services.VotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,16 @@ public class VotoController {
     public VotoController(VotoService votoService) { this.service = votoService; }
 
     @GetMapping("/votosPorCandidato/{candidatoId}")
-    public ResponseEntity<Integer> getVotosByCandidato(@PathVariable("candidatoId") Long candidatoId) {
+    public ResponseEntity<Integer> getVotosByCandidato(@PathVariable("candidatoId") Long candidatoId)
+            throws CandidatoNoEncontradoException {
+
         return new ResponseEntity<>(service.getVotosByCandidato(candidatoId), HttpStatus.OK);
     }
 
     @GetMapping("/votosPorPartido/{partidoId}")
-    public ResponseEntity<Integer> getVotosByPartido(@PathVariable("partidoId") Long partidoId) {
+    public ResponseEntity<Integer> getVotosByPartido(@PathVariable("partidoId") Long partidoId)
+            throws PartidoNoEncontradoException, CandidatoNoEncontradoException {
+
         return new ResponseEntity<>(service.getVotosByPartidoPolitico(partidoId), HttpStatus.OK);
     }
 
