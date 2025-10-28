@@ -2,6 +2,7 @@ package com.evaluacion.votos.evaluacion_backend_votos.services;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.CandidatoDTO;
 import com.evaluacion.votos.evaluacion_backend_votos.exceptions.CandidatoNoEncontradoException;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Candidato;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.repositories.CandidatoRepository;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @Service
 public class CandidatoService {
     private CandidatoRepository repository;
+    private PartidoPoliticoService partidoPoliticoService;
 
     @Autowired
-    public CandidatoService(CandidatoRepository candidatoRepository) {
+    public CandidatoService(CandidatoRepository candidatoRepository,  PartidoPoliticoService partidoPoliticoService) {
         this.repository = candidatoRepository;
+        this.partidoPoliticoService = partidoPoliticoService;
     }
 
-        public List<Candidato> init(List<Candidato> candidatos){
+    public List<Candidato> init(List<Candidato> candidatos){
         return repository.saveAll(candidatos);
     }
 
@@ -58,14 +61,16 @@ public class CandidatoService {
     }
 
     public Candidato updateCandidato(Long id, Candidato candidatoActualizado)
-            throws CandidatoNoEncontradoException {
+            throws CandidatoNoEncontradoException, PartidoNoEncontradoException {
 
         Optional<Candidato> candidato = repository.findById(id);
+        PartidoPolitico partidoActualizado =  partidoPoliticoService.getPartidoById(candidatoActualizado.getPartidoPolitico().getId());
+
         if(candidato.isPresent()){
             Candidato candidatoExistente = candidato.get();
 
             candidatoExistente.setNombre(candidatoActualizado.getNombre());
-            candidatoExistente.setPartidoPolitico(candidatoActualizado.getPartidoPolitico());
+            candidatoExistente.setPartidoPolitico(partidoActualizado);
 
             return repository.save(candidatoExistente);
         }

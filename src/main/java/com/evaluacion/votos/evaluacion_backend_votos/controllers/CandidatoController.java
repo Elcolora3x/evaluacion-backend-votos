@@ -2,6 +2,7 @@ package com.evaluacion.votos.evaluacion_backend_votos.controllers;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.CandidatoDTO;
 import com.evaluacion.votos.evaluacion_backend_votos.exceptions.CandidatoNoEncontradoException;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Candidato;
 import com.evaluacion.votos.evaluacion_backend_votos.services.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class CandidatoController {
 
     @PutMapping("/{candidatoId}")
     public ResponseEntity<Candidato> updateCandidato(@PathVariable("candidatoId") Long candidatoId, @RequestBody Candidato candidato)
-            throws CandidatoNoEncontradoException {
+            throws CandidatoNoEncontradoException, PartidoNoEncontradoException {
 
         return new ResponseEntity<>(service.updateCandidato(candidatoId, candidato), HttpStatus.OK);
     }
