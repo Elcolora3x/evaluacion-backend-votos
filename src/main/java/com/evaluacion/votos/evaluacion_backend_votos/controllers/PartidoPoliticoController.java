@@ -3,7 +3,6 @@ package com.evaluacion.votos.evaluacion_backend_votos.controllers;
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.PartidoPoliticoDTO;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.services.PartidoPoliticoService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
