@@ -1,6 +1,7 @@
 package com.evaluacion.votos.evaluacion_backend_votos.services;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.PartidoPoliticoDTO;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.PartidoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.repositories.PartidoPoliticoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,15 @@ public class PartidoPoliticoService {
         return partidosDTO;
     }
 
-    public PartidoPolitico getPartidoById(Long id) throws NoSuchElementException {
+    public PartidoPolitico getPartidoById(Long id)
+            throws PartidoNoEncontradoException {
+
         Optional<PartidoPolitico> partido = repository.findById(id);
         if(partido.isPresent()){
             return partido.get();
         }
         else{
-            throw new NoSuchElementException();
+            throw new PartidoNoEncontradoException(id);
         }
     }
 
@@ -46,7 +49,9 @@ public class PartidoPoliticoService {
         return repository.save(partidoPolitico);
     }
 
-    public PartidoPolitico updatePartido(Long id, PartidoPolitico partidoActualizado) throws NoSuchElementException {
+    public PartidoPolitico updatePartido(Long id, PartidoPolitico partidoActualizado)
+            throws PartidoNoEncontradoException {
+
         Optional<PartidoPolitico> partido = repository.findById(id);
 
         if(partido.isPresent()){
@@ -58,17 +63,19 @@ public class PartidoPoliticoService {
             return repository.save(partidoExistente);
         }
         else{
-            throw new NoSuchElementException("No se encontro el partido");
+            throw new PartidoNoEncontradoException(id);
         }
     }
 
-    public void deletePartido(Long id) throws NoSuchElementException {
+    public void deletePartido(Long id)
+            throws PartidoNoEncontradoException {
+
         Optional<PartidoPolitico> partido = repository.findById(id);
         if(partido.isPresent()){
             repository.delete(partido.get());
         }
         else{
-            throw new NoSuchElementException("No se encontro el partido");
+            throw new PartidoNoEncontradoException(id);
         }
     }
 }

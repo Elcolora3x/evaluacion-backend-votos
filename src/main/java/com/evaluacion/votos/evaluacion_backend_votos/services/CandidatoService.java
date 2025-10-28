@@ -1,6 +1,7 @@
 package com.evaluacion.votos.evaluacion_backend_votos.services;
 
 import com.evaluacion.votos.evaluacion_backend_votos.dtos.CandidatoDTO;
+import com.evaluacion.votos.evaluacion_backend_votos.exceptions.CandidatoNoEncontradoException;
 import com.evaluacion.votos.evaluacion_backend_votos.models.Candidato;
 import com.evaluacion.votos.evaluacion_backend_votos.models.PartidoPolitico;
 import com.evaluacion.votos.evaluacion_backend_votos.repositories.CandidatoRepository;
@@ -33,13 +34,15 @@ public class CandidatoService {
         return candidatosDTO;
     }
 
-    public Candidato getCandidatoById(Long id) throws NoSuchElementException {
+    public Candidato getCandidatoById(Long id)
+            throws CandidatoNoEncontradoException {
+
         Optional<Candidato> candidato = repository.findById(id);
         if(candidato.isPresent()){
             return candidato.get();
         }
         else{
-            throw new NoSuchElementException();
+            throw new CandidatoNoEncontradoException(id);
         }
     }
 
@@ -51,7 +54,9 @@ public class CandidatoService {
         return repository.save(candidato);
     }
 
-    public Candidato updateCandidato(Long id, Candidato candidatoActualizado) throws NoSuchElementException {
+    public Candidato updateCandidato(Long id, Candidato candidatoActualizado)
+            throws CandidatoNoEncontradoException {
+
         Optional<Candidato> candidato = repository.findById(id);
         if(candidato.isPresent()){
             Candidato candidatoExistente = candidato.get();
@@ -62,17 +67,19 @@ public class CandidatoService {
             return repository.save(candidatoExistente);
         }
         else{
-            throw new NoSuchElementException("No se encontro el candidato");
+            throw new CandidatoNoEncontradoException(id);
         }
     }
 
-    public void deleteCandidato(Long id) throws NoSuchElementException {
+    public void deleteCandidato(Long id)
+            throws CandidatoNoEncontradoException {
+
         Optional<Candidato> candidato = repository.findById(id);
         if(candidato.isPresent()){
             repository.delete(candidato.get());
         }
         else{
-            throw new NoSuchElementException("No se encontro el candidato");
+            throw new CandidatoNoEncontradoException(id);
         }
     }
 }
