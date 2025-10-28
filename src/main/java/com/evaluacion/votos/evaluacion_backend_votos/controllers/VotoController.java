@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/votos")
 public class VotoController {
@@ -16,6 +18,13 @@ public class VotoController {
 
     @Autowired
     public VotoController(VotoService votoService) { this.service = votoService; }
+
+
+    @PostMapping("/init")
+    public ResponseEntity<List<Voto>> init(@RequestBody List<Voto> votos) {
+        return new ResponseEntity<>(service.init(votos), HttpStatus.CREATED);
+    }
+
 
     @GetMapping("/votosPorCandidato/{candidatoId}")
     public ResponseEntity<Integer> getVotosByCandidato(@PathVariable("candidatoId") Long candidatoId)
