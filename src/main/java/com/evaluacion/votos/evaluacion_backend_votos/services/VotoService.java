@@ -26,6 +26,10 @@ public class VotoService {
         this.partidoPoliticoService = partidoPoliticoService;
     }
 
+    public List<Voto> init(List<Voto> votos){
+        return repository.saveAll(votos);
+    }
+
     public Voto createVoto(Voto voto) { return repository.save(voto); }
 
     public Integer getVotosByCandidato(Long candidatoId)

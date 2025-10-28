@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -20,6 +19,10 @@ public class CandidatoService {
     @Autowired
     public CandidatoService(CandidatoRepository candidatoRepository) {
         this.repository = candidatoRepository;
+    }
+
+        public List<Candidato> init(List<Candidato> candidatos){
+        return repository.saveAll(candidatos);
     }
 
     public List<CandidatoDTO> getCandidatos(){
