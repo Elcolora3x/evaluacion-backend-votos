@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface VotoRepository extends JpaRepository<Voto, Long> {
 
-   public List<Voto> findByCandidato(Candidato candidato);
+    List<Voto> findByCandidato(Candidato candidato);
 }
