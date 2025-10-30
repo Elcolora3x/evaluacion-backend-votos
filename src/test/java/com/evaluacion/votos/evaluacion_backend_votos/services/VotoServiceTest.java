@@ -36,9 +36,9 @@ class VotoServiceTest {
     @InjectMocks
     private VotoService votoService;
 
+    private PartidoPolitico partido;
     private Candidato candidato1;
     private Candidato candidato2;
-    private PartidoPolitico partido;
     private Voto voto1;
     private Voto voto2;
     private Voto voto3;
@@ -106,14 +106,14 @@ class VotoServiceTest {
     }
 
     @Test
-    @DisplayName("Test de excepcion CandidatoNoEncontradoException para CreateVoto")
+    @DisplayName("Test de excepcion CandidatoNoEncontradoException para metodo CreateVoto")
     void testCreateVotoExceptionNotFound()
             throws CandidatoNoEncontradoException {
 
         Long candidatoIdInexistente = 99L;
         String mensajeExcepcion = "El candidato con id 99 no se encuentra en la base de datos.";
 
-        given(votoRepository.findById(candidatoIdInexistente))
+        given(candidatoService.getCandidatoById(candidatoIdInexistente))
                 .willThrow(new CandidatoNoEncontradoException(candidatoIdInexistente));
 
         CandidatoNoEncontradoException excepcion = assertThrows(CandidatoNoEncontradoException.class,
@@ -143,7 +143,7 @@ class VotoServiceTest {
     }
 
     @Test
-    @DisplayName("Test de excepcion CandidatoNoEncontradoException")
+    @DisplayName("Test de excepcion CandidatoNoEncontradoException para metodo GetVotosByCandidato")
     void testGetVotosByCandidatoNotFound()
             throws CandidatoNoEncontradoException {
 
@@ -196,7 +196,7 @@ class VotoServiceTest {
     }
 
     @Test
-    @DisplayName("Test de excepcion PartidoNoEncontradoException")
+    @DisplayName("Test de excepcion PartidoNoEncontradoException en metodo GetVotosByPartidoPolitico")
     void testGetVotosByPartidoPoliticoNotFound()
             throws PartidoNoEncontradoException {
 
