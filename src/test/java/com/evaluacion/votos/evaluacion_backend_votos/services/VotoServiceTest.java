@@ -47,16 +47,16 @@ class VotoServiceTest {
     void setUp() {
         partido = new PartidoPolitico();
         partido.setId(1L);
-        partido.setNombre("Partido Ficticio");
+        partido.setNombre("Partido 1");
 
         candidato1 = new Candidato();
         candidato1.setId(1L);
-        candidato1.setNombre("Candidato A");
+        candidato1.setNombre("Candidato 1");
         candidato1.setPartidoPolitico(partido);
 
         candidato2 = new Candidato();
         candidato2.setId(2L);
-        candidato2.setNombre("Candidato B");
+        candidato2.setNombre("Candidato 2");
         candidato2.setPartidoPolitico(partido);
 
         voto1 = new Voto();
@@ -106,7 +106,7 @@ class VotoServiceTest {
     }
 
     @Test
-    @DisplayName("Test de excepcion CandidatoNoEncontradoException")
+    @DisplayName("Test de excepcion CandidatoNoEncontradoException para CreateVoto")
     void testCreateVotoExceptionNotFound()
             throws CandidatoNoEncontradoException {
 
