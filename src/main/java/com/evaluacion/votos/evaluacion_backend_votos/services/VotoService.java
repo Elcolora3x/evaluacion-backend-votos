@@ -30,7 +30,13 @@ public class VotoService {
         return repository.saveAll(votos);
     }
 
-    public Voto createVoto(Voto voto) { return repository.save(voto); }
+    public Voto createVoto(Voto voto)
+            throws CandidatoNoEncontradoException {
+
+        Candidato candidato = candidatoService.getCandidatoById(voto.getCandidato().getId());
+        voto.setCandidato(candidato);
+
+        return repository.save(voto); }
 
     public Integer getVotosByCandidato(Long candidatoId)
             throws CandidatoNoEncontradoException {

@@ -41,7 +41,9 @@ public class VotoController {
     }
 
     @PostMapping
-    public ResponseEntity<Voto> createVoto(@RequestBody Voto voto){
+    public ResponseEntity<Voto> createVoto(@RequestBody Voto voto)
+            throws CandidatoNoEncontradoException {
+
         return new ResponseEntity<>(service.createVoto(voto), HttpStatus.CREATED);
     }
 }
