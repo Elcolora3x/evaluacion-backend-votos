@@ -64,9 +64,9 @@ public class CandidatoService {
             throws CandidatoNoEncontradoException, PartidoNoEncontradoException {
 
         Optional<Candidato> candidato = repository.findById(id);
-        PartidoPolitico partidoActualizado =  partidoPoliticoService.getPartidoById(candidatoActualizado.getPartidoPolitico().getId());
 
         if(candidato.isPresent()){
+            PartidoPolitico partidoActualizado =  partidoPoliticoService.getPartidoById(candidatoActualizado.getPartidoPolitico().getId());
             Candidato candidatoExistente = candidato.get();
 
             candidatoExistente.setNombre(candidatoActualizado.getNombre());
