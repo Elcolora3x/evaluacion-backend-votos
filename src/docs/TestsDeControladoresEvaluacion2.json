@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "2ae2de49-0b1f-4ee4-8c46-d4b7e889e9c5",
+		"name": "pruebasEvaluacion2",
+		"description": "Conjunto de pruebas de cada controlador definido para la evaluación 2 del Backend: Sistema de Gestión de Votos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46881927",
+		"_collection_link": "https://nickof-3735851.postman.co/workspace/nicko-F's-Workspace~b4f016ed-7b7e-48cf-8aaf-9f953741eff2/collection/46881927-2ae2de49-0b1f-4ee4-8c46-d4b7e889e9c5?action=share&source=collection_link&creator=46881927"
+	},
+	"item": [
+		{
+			"name": "PartidoPoliticoController",
+			"item": [
+				{
+					"name": "Init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"nombre\":\"SKT T1\",\r\n        \"sigla\":\"T1\"\r\n    },\r\n    {\r\n        \"nombre\":\"100 Thieves\",\r\n        \"sigla\":\"TH100\"\r\n    },\r\n    {\r\n        \"nombre\":\"Movistar KOI\",\r\n        \"sigla\":\"MKOI\"\r\n    },\r\n    {\r\n        \"nombre\":\"Fnatic\",\r\n        \"sigla\":\"FNC\"\r\n    }\r\n]\r\n    \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/partidos/init",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partidos",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPartidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Partido Lolero Nacional\",\r\n    \"sigla\":\"T1\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/partidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPartido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"G2\",\r\n    \"sigla\":\"G2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/partidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePartidoById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Gen G\",\r\n    \"sigla\":\"GG\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/partidos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partidos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePartidoById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/partidos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"partidos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Test de todos los endpoints del controlador de Partidos Politicos para la segunda evaluación de Backend."
+		},
+		{
+			"name": "CandidatoController",
+			"item": [
+				{
+					"name": "Init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"nombre\":\"Faker\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"1\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Gumayusi\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"1\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Oner\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"1\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Dhokla\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"2\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Quid\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"2\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Eyla\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"2\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Elyoya\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"3\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Jojopyun\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"3\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Supa\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"3\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Razork\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"4\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Poby\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"4\"\r\n        }\r\n    },\r\n    {\r\n        \"nombre\":\"Upset\",\r\n        \"partidoPolitico\":{\r\n            \"id\":\"4\"\r\n        }\r\n    }\r\n]\r\n    \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidatos/init",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidatos",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCandidatos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Partido Lolero Nacional\",\r\n    \"sigla\":\"PLN\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCandidato",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Refete Martinez\",\r\n    \"partidoPolitico\": {\r\n        \"id\":\"1\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidatos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidatos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCandidatoById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"El Nacho\",\r\n    \"partidoPolitico\":{\r\n        \"id\": \"4\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidatos/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidatos",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCandidatoById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/candidatos/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidatos",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Test de todos los endpoints del controlador de Candidatos para la segunda evaluación de Backend."
+		},
+		{
+			"name": "VotoController",
+			"item": [
+				{
+					"name": "Init",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"1\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T15:30:00.000000000\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"1\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T15:35:15.000000000\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"3\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T16:00:00.500056600\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"4\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T16:30:04.123456789\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"5\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T16:32:24.543256789\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"5\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T16:34:26.543254324\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"7\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T16:36:22.543875324\"\r\n    },\r\n    {\r\n        \"candidato\":{\r\n            \"id\":\"10\"\r\n        },\r\n        \"fechaEmision\":\"2025-10-31T17:00:00.543875324\"\r\n    }\r\n]\r\n    \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/votos/init",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"votos",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createVoto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"candidato\":{\r\n        \"id\":\"1\"\r\n    },\r\n    \"fechaEmision\": \"2025-11-01T16:34:26.543254324\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/votos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"votos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CantidadVotosPorCandidato",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/votos/votosPorCandidato/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"votos",
+								"votosPorCandidato",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CantidadVotosPorPartido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/votos/votosPorPartido/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"votos",
+								"votosPorPartido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Test de todos los endpoints del controlador de Votos para la segunda evaluación de Backend."
+		}
+	]
+}
