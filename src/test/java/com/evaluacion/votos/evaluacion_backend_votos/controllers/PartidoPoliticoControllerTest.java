@@ -42,6 +42,7 @@ class PartidoPoliticoControllerTest {
 
     @BeforeEach
     void setUp() {
+
         partido1 = new PartidoPolitico();
         partido1.setId(1L);
         partido1.setNombre("Partido1");
@@ -115,8 +116,7 @@ class PartidoPoliticoControllerTest {
 
     @Test
     @DisplayName("text de excepcion PartidoNoEncontradoException en metodo UpdatePartido")
-    void testUpdatePartidoNotFound()
-            throws Exception {
+    void testUpdatePartidoNotFound() throws Exception {
 
         Long partidoIdInexistente = 99L;
 

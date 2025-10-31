@@ -107,7 +107,7 @@ class VotoServiceTest {
 
     @Test
     @DisplayName("Test de excepcion CandidatoNoEncontradoException para metodo CreateVoto")
-    void testCreateVotoExceptionNotFound()
+    void testCreateVotoNotFound()
             throws CandidatoNoEncontradoException {
 
         Long candidatoIdInexistente = 99L;
@@ -174,7 +174,7 @@ class VotoServiceTest {
         List<Candidato> candidatosDelPartido = List.of(candidato1, candidato2);
 
         List<Voto> votosCandidato1 = List.of(voto1, voto2);
-        List<Voto> votosCandidato2 = List.of(voto3); // 1 voto
+        List<Voto> votosCandidato2 = List.of(voto3);
 
         given(partidoPoliticoService.getPartidoById(partidoId)).willReturn(partido);
         given(candidatoService.getCandidatosByPartidoPolitico(partido)).willReturn(candidatosDelPartido);
